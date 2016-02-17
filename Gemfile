@@ -8,6 +8,7 @@ gem 'sqlite3'
 gem 'puma'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
+gem 'active_model_serializers', '~> 0.10.0.rc1'
 # Action Cable dependencies for the Redis adapter
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
