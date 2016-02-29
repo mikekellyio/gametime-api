@@ -3,7 +3,8 @@ class GamesController < ApplicationController
 
   # GET /games
   def index
-    @games = Game.all
+    @games = Game.autocomplete(params[:q]) if params[:q]
+    @games ||= Game.all
 
     render json: @games
   end
@@ -41,7 +42,7 @@ class GamesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      @game = Game.where(password: params[:password]).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
