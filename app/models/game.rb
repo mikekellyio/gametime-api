@@ -1,7 +1,10 @@
 class Game < ApplicationRecord
   has_many :teams
 
-  after_update_commit { GameBroadcastJob.perform_later self }
+  after_update_commit {
+    logger.debug "updated game #{self.id}"
+    GameBroadcastJob.perform_later self
+  }
   before_create :build_teams
 
   scope :autocomplete, ->(q) { where("games.name like ?", "#{q}%")}
