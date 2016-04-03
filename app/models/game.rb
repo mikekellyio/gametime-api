@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
-  has_many :teams
+  has_many :teams,
+        -> {order(:id)}
 
   after_update_commit {
     logger.debug "updated game #{self.id}"
